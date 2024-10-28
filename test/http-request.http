@@ -1,0 +1,12 @@
+# Example api requests
+
+## Items resource
+
+### Get all items
+GET http://localhost:3000/api/items
+
+### Create an item
+POST http://localhost:3000/api/items
+Content-Type: application/json
+
+{"name": "New Item"}
