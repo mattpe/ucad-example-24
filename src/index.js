@@ -1,5 +1,5 @@
 import express from 'express';
-import {getItems, postItem} from './items.js';
+import {getItemById, getItems, postItem} from './items.js';
 const hostname = '127.0.0.1';
 const port = 3000;
 const app = express();
@@ -9,6 +9,11 @@ app.use(express.json());
 // /api/items resource endpoints
 app.get('/api/items', (req, res) => {
   getItems(res);
+});
+app.get('/api/items/:id', (req, res) => {
+  //console.log('req.params', req.params);
+  //console.log('query params', req.query);
+  getItemById(req, res);
 });
 app.post('/api/items', (req, res) => {
   postItem(req, res);

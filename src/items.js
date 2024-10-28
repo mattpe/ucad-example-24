@@ -2,6 +2,7 @@
 const items = [
   {id: 1, name: 'Item1'},
   {id: 2, name: 'Item2'},
+  {id: 5, name: 'Item5'},
 ];
 
 const getItems = (res) => {
@@ -10,26 +11,24 @@ const getItems = (res) => {
 
 const postItem = (req, res) => {
   console.log('post req body', req.body);
-  
-  res.status(201).json({message: 'Item added', id: 0});
-  // Status code only is a valid response too
-  // res.sendStatus(201);
-  
-  // req
-  //   .on('data', (chunk) => {
-  //     body.push(chunk);
-  //   })
-  //   .on('end', () => {
-  //     body = Buffer.concat(body).toString();
-  //     // at this point, `body` has the entire request body stored in it as a string
-  //     console.log('req body:', body);
-  //     const item = JSON.parse(body);
-  //     // TODO: check largest id in array and increment by 1
-  //     item.id = items.length + 1; // NOT like this
-  //     items.push(item);
-  //     res.writeHead(200, {'Content-Type': 'application/json'});
-  //     res.end(JSON.stringify({message: 'Item added'}));
-
+  const newItem = req.body;
+  newItem.id = items[items.length - 1].id + 1;
+  items.push(newItem);
+  res.status(201).json({message: 'Item added', id: newItem.id});
 };
 
-export {getItems, postItem};
+const getItemById = (req, res) => {
+  const id = parseInt(req.params.id);
+  const item = items.find((item) => item.id === id);
+  if (item) {
+    if (req.query.format === 'plain') {
+      res.send(item.name);
+    } else {
+      res.json(item);
+    }
+  } else {
+    res.status(404).json({message: 'Item not found'});
+  }
+};
+
+export {getItems, postItem, getItemById};

@@ -5,6 +5,12 @@
 ### Get all items
 GET http://localhost:3000/api/items
 
+### Get an item based on id
+GET http://localhost:3000/api/items/2?format=plain
+
+### 2nd version
+GET http://localhost:3000/api/items/2
+
 ### Create an item
 POST http://localhost:3000/api/items
 Content-Type: application/json
