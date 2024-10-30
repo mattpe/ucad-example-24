@@ -22,7 +22,7 @@ const mediaItems = [
   },
   {
     media_id: 9625,
-    filename: '2f9b.jpg',
+    filename: 'cat2.png',
     filesize: 30635,
     title: 'Aksux',
     description: 'friends',
@@ -78,4 +78,4 @@ const getItemById = (req, res) => {
   }
 };
 
-export {getItems, postItem, getItemById};
+export {getItems, postItem, getItemById, mediaItems};
