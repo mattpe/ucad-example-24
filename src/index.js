@@ -14,11 +14,11 @@ app.use(express.static('public'));
 // Uploaded media files
 app.use('/media', express.static('media'));
 
-// Api documentation tms. with pug
+// Api documentation page rendered with pug
 app.get('/api', (req, res) => {
   res.render('index', {
-    title: 'API Documentation',
-    message: 'TODO: include docs here!',
+    title: 'Media sharing REST API Documentation',
+    version: process.env.npm_package_version,
     exampleData: mediaItems,
   });
 });
