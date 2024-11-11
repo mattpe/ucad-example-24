@@ -62,6 +62,7 @@ const fetchMediaItemById = () => {
 }
 
 const addMediaItem = (newItem) => {
+  // input validatation is done later
   newItem.media_id = mediaItems[mediaItems.length - 1].media_id + 1;
   mediaItems.push(newItem);
   return newItem.media_id;

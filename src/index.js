@@ -12,7 +12,7 @@ app.use(express.json());
 // Home page (client) as static html, css, js
 app.use(express.static('public'));
 // Uploaded media files
-app.use('/media', express.static('media'));
+app.use('/uploads', express.static('uploads'));
 
 // Api documentation page rendered with pug
 app.get('/api', (req, res) => {
