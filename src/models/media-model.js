@@ -52,30 +52,19 @@ const mediaItems = [
   },
 ];
 
-const getItems = (res) => {
-  res.json(mediaItems);
-};
+const fetchMediaItems = () => {
+  return mediaItems;
+}
 
-const postItem = (req, res) => {
-  console.log('post req body', req.body);
-  const newItem = req.body;
-  newItem.media_id = mediaItems[mediaItems.length - 1].id + 1;
+const fetchMediaItemById = () => {
+  // TODO: move logic from controller here
+  return mediaItems;
+}
+
+const addMediaItem = (newItem) => {
+  newItem.media_id = mediaItems[mediaItems.length - 1].media_id + 1;
   mediaItems.push(newItem);
-  res.status(201).json({message: 'Item added', id: newItem.id});
+  return newItem.media_id;
 };
 
-const getItemById = (req, res) => {
-  const id = parseInt(req.params.id);
-  const item = mediaItems.find((item) => item.media_id === id);
-  if (item) {
-    if (req.query.format === 'plain') {
-      res.send(item.title);
-    } else {
-      res.json(item);
-    }
-  } else {
-    res.status(404).json({message: 'Item not found'});
-  }
-};
-
-export {getItems, postItem, getItemById, mediaItems};
+export {fetchMediaItems, addMediaItem};
