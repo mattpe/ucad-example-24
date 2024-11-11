@@ -56,9 +56,9 @@ const fetchMediaItems = () => {
   return mediaItems;
 }
 
-const fetchMediaItemById = () => {
-  // TODO: move logic from controller here
-  return mediaItems;
+const fetchMediaItemById = (id) => {
+  const item = mediaItems.find((item) => item.media_id === id);
+  return item;
 }
 
 const addMediaItem = (newItem) => {
@@ -68,4 +68,4 @@ const addMediaItem = (newItem) => {
   return newItem.media_id;
 };
 
-export {fetchMediaItems, addMediaItem};
+export {fetchMediaItems, fetchMediaItemById, addMediaItem};
