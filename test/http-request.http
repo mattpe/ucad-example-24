@@ -15,14 +15,20 @@ GET http://localhost:3000/api/media/963
 
 ### Create an item
 POST http://localhost:3000/api/media
-Content-Type: application/json
+Content-Type: multipart/form-data; boundary=----Boundary
 
-{
-    "filename": "uusi.jpg",
-    "filesize": 887574,
-    "title": "Uusi kuva",
-    "description": "testikuvaus",
-    "user_id": 1606,
-    "media_type": "image/jpeg",
-    "created_at": "2023-10-16T19:00:09.000Z"
-}
+------Boundary
+Content-Disposition: form-data; name="title"
+
+New cat image
+------Boundary
+Content-Disposition: form-data; name="user_id"
+
+1
+------Boundary
+Content-Disposition: form-data; name="file"; filename="image.jpg"
+Content-Type: image/png
+
+< ./cat2.png
+------Boundary--
+
