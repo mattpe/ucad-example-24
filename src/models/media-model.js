@@ -1,3 +1,5 @@
+import promisePool from '../utils/database.js';
+
 // Dummy mock data
 const mediaItems = [
   {
@@ -52,14 +54,20 @@ const mediaItems = [
   },
 ];
 
-const fetchMediaItems = () => {
-  return mediaItems;
-}
+const fetchMediaItems = async () => {
+  try {
+    const [rows] = await promisePool.query('SELECT * FROM MediaItems');
+    return rows;
+  } catch (e) {
+    console.error('fetchMediaItems', e.message);
+    throw new Error('Database error ' + e.message);
+  }
+};
 
 const fetchMediaItemById = (id) => {
   const item = mediaItems.find((item) => item.media_id === id);
   return item;
-}
+};
 
 const addMediaItem = (newItem) => {
   // input validatation is done later

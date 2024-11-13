@@ -22,11 +22,15 @@ Content-Disposition: form-data; name="title"
 
 New cat image
 ------Boundary
+Content-Disposition: form-data; name="description"
+
+Kiva kuva kissasta.
+------Boundary
 Content-Disposition: form-data; name="user_id"
 
 1
 ------Boundary
-Content-Disposition: form-data; name="file"; filename="image.jpg"
+Content-Disposition: form-data; name="file"; filename="image.png"
 Content-Type: image/png
 
 < ./cat2.png

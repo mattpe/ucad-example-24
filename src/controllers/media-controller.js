@@ -1,7 +1,12 @@
 import {fetchMediaItems, addMediaItem, fetchMediaItemById} from "../models/media-model.js";
 
-const getItems = (req, res) => {
-  res.json(fetchMediaItems());
+const getItems = async (req, res) => {
+  try {
+    res.json(await fetchMediaItems());
+  } catch (e) {
+    console.error('getItems', e.message);
+    res.status(503).json({error: 503, message: 'DB error'});
+  }
 };
 
 const postItem = (req, res) => {
