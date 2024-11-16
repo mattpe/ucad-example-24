@@ -6,12 +6,9 @@
 GET http://localhost:3000/api/media
 
 ### Get a media item based on id
-GET http://localhost:3000/api/media/9632?format=plain
-
-### 2nd version
 GET http://localhost:3000/api/media/2
-### test not found
-GET http://localhost:3000/api/media/963
+### Get media item FAIL (id not found)
+GET http://localhost:3000/api/media/96399
 
 ### Create an item
 POST http://localhost:3000/api/media
@@ -26,9 +23,20 @@ Content-Disposition: form-data; name="description"
 
 Kiva kuva kissasta.
 ------Boundary
-Content-Disposition: form-data; name="user_id"
+Content-Disposition: form-data; name="file"; filename="image.png"
+Content-Type: image/png
 
-1
+< ./cat2.png
+------Boundary--
+
+### Create an item FAIL (title missing)
+POST http://localhost:3000/api/media
+Content-Type: multipart/form-data; boundary=----Boundary
+
+------Boundary
+Content-Disposition: form-data; name="description"
+
+Kiva kuva kissasta.
 ------Boundary
 Content-Disposition: form-data; name="file"; filename="image.png"
 Content-Type: image/png
@@ -36,3 +44,11 @@ Content-Type: image/png
 < ./cat2.png
 ------Boundary--
 
+### Update an item
+PUT http://localhost:3000/api/media/4
+Content-Type: application/json
+
+{
+  "title": "Uusi title kuvalle",
+  "description": "Tosi kiva kuva kissasta."
+}

@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import {getItemById, getItems, postItem} from '../controllers/media-controller.js';
+import {getItemById, getItems, postItem, putItem} from '../controllers/media-controller.js';
 
 const upload = multer({dest: 'uploads/'});
 
@@ -13,9 +13,6 @@ mediaRouter.route('/')
 mediaRouter
   .route('/:id')
   .get(getItemById)
-  .put((req, res) => {
-    // TODO: implement this endpoint
-    res.status(501).json({message: 'Under construction'});
-  });
+  .put(putItem);
 
 export default mediaRouter;
