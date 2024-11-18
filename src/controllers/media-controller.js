@@ -48,8 +48,8 @@ const postItem = async (req, res) => {
   console.log('post req body', req.body);
   console.log('post req file', req.file);
   const newMediaItem = {
-    // user id is hardcoded for now
-    user_id: 1,
+    // user id read from token added by authentication middleware
+    user_id: req.user.user_id,
     title,
     description,
     filename: req.file.filename,
@@ -82,10 +82,15 @@ const putItem = async (req, res) => {
     description,
   };
   try {
-    const itemsEdited = await updateMediaItem(req.params.id, newDetails);
+    const itemsEdited = await updateMediaItem(
+      req.params.id,
+      req.user.user_id,
+      newDetails,
+    );
     // if no items were edited (id was not found in DB), return 404
+    // TODO (optional): return 403 if user does not have permission to edit (user_id does not match the one in db)
     if (itemsEdited === 0) {
-      return res.status(404).json({message: 'Media Item not found'});
+      return res.status(404).json({message: 'Media Item not found or no permission to edit'});
     } else if (itemsEdited === 1) {
       return res.status(200).json({message: 'Item updated', id: req.params.id});
     }

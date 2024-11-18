@@ -11,18 +11,23 @@ Content-Type: application/json
   "password": "to-be-hashed-pw1"
 }
 
+### Get my user info
+GET http://localhost:3000/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE3MzE5MjA1MDYsImV4cCI6MTczMjAwNjkwNn0.lsH2IFBtX7K83PGTaUfor3LWOgaGPPRflTA5kbCvVeA
+
 ## Media resource
 
 ### Get all media
 GET http://localhost:3000/api/media
 
 ### Get a media item based on id
-GET http://localhost:3000/api/media/2
+GET http://localhost:3000/api/media/4
 ### Get media item FAIL (id not found)
 GET http://localhost:3000/api/media/96399
 
 ### Create an item
 POST http://localhost:3000/api/media
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6IkpvaG5Eb2UiLCJwYXNzd29yZCI6InRvLWJlLWhhc2hlZC1wdzEiLCJlbWFpbCI6ImpvaG5kb2VAZXhhbXBsZS5jb20iLCJ1c2VyX2xldmVsX2lkIjoyLCJjcmVhdGVkX2F0IjoiMjAyNC0xMS0wNlQxMTo1NDowNi4wMDBaIiwiaWF0IjoxNzMxOTE5ODA1LCJleHAiOjE3MzIwMDYyMDV9.k2BbXSdFjhus-w8VUGCx6LUDxfOsFEAJicZzxw0ZrXM
 Content-Type: multipart/form-data; boundary=----Boundary
 
 ------Boundary
@@ -56,10 +61,11 @@ Content-Type: image/png
 ------Boundary--
 
 ### Update an item
-PUT http://localhost:3000/api/media/2
+PUT http://localhost:3000/api/media/4
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE3MzE5MjA1MDYsImV4cCI6MTczMjAwNjkwNn0.lsH2IFBtX7K83PGTaUfor3LWOgaGPPRflTA5kbCvVeA
 
 {
-  "title": "Uusi title videollo",
+  "title": "Muokattu kuva",
   "description": "Tosi kiva."
 }

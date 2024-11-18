@@ -65,9 +65,9 @@ const addMediaItem = async (newItem) => {
  * @param {object} updatedItem 
  * @returns {Promise<number>} number of affected rows 
  */
-const updateMediaItem = async (id, updatedItem) => {
-  const sql = `UPDATE MediaItems SET title = ?, description = ? WHERE media_id = ?`;
-  const params = [updatedItem.title, updatedItem.description, id];
+const updateMediaItem = async (id, userId, updatedItem) => {
+  const sql = `UPDATE MediaItems SET title = ?, description = ? WHERE media_id = ? AND user_id = ?`;
+  const params = [updatedItem.title, updatedItem.description, id, userId];
   try {
     const result = await promisePool.query(sql, params);
     console.log('updateMediaItem', result);
