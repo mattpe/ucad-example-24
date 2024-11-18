@@ -1,5 +1,16 @@
 # Example api requests
 
+## User authentication
+
+### Login
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "JohnDoe",
+  "password": "to-be-hashed-pw1"
+}
+
 ## Media resource
 
 ### Get all media
@@ -45,10 +56,10 @@ Content-Type: image/png
 ------Boundary--
 
 ### Update an item
-PUT http://localhost:3000/api/media/4
+PUT http://localhost:3000/api/media/2
 Content-Type: application/json
 
 {
-  "title": "Uusi title kuvalle",
-  "description": "Tosi kiva kuva kissasta."
+  "title": "Uusi title videollo",
+  "description": "Tosi kiva."
 }

@@ -85,7 +85,7 @@ const putItem = async (req, res) => {
     const itemsEdited = await updateMediaItem(req.params.id, newDetails);
     // if no items were edited (id was not found in DB), return 404
     if (itemsEdited === 0) {
-      return res.status(404).json({message: 'Item not found'});
+      return res.status(404).json({message: 'Media Item not found'});
     } else if (itemsEdited === 1) {
       return res.status(200).json({message: 'Item updated', id: req.params.id});
     }

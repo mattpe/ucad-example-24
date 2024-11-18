@@ -1,5 +1,6 @@
 import express from 'express';
 import mediaRouter from './routes/media-router.js';
+import authRouter from './routes/auth-router.js';
 const hostname = '127.0.0.1';
 const port = 3000;
 const app = express();
@@ -23,6 +24,8 @@ app.get('/api', (req, res) => {
   });
 });
 
+// User authentication endpoints
+app.use('/api/auth', authRouter);
 // Media resource endpoints
 app.use('/api/media', mediaRouter);
 

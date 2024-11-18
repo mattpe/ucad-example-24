@@ -1,6 +1,5 @@
 import promisePool from '../utils/database.js';
 
-
 /**
  * Fetch all media items from the database
  * TODO: limit the number of items returned based on query parameter?
