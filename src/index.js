@@ -9,6 +9,7 @@ app.set('view engine', 'pug');
 app.set('views', 'src/views');
 
 app.use(express.json());
+//app.use(express.urlencoded({extended: true}));
 
 // Home page (client) as static html, css, js
 app.use(express.static('public'));

@@ -2,13 +2,23 @@
 
 ## User authentication
 
+### Register
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "newuser3",
+  "password": "new-password",
+  "email": "newuser3@example.com"
+}
+
 ### Login
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "JohnDoe",
-  "password": "to-be-hashed-pw1"
+  "username": "newuser3",
+  "password": "new-password"
 }
 
 ### Get my user info
@@ -27,7 +37,7 @@ GET http://localhost:3000/api/media/96399
 
 ### Create an item
 POST http://localhost:3000/api/media
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6IkpvaG5Eb2UiLCJwYXNzd29yZCI6InRvLWJlLWhhc2hlZC1wdzEiLCJlbWFpbCI6ImpvaG5kb2VAZXhhbXBsZS5jb20iLCJ1c2VyX2xldmVsX2lkIjoyLCJjcmVhdGVkX2F0IjoiMjAyNC0xMS0wNlQxMTo1NDowNi4wMDBaIiwiaWF0IjoxNzMxOTE5ODA1LCJleHAiOjE3MzIwMDYyMDV9.k2BbXSdFjhus-w8VUGCx6LUDxfOsFEAJicZzxw0ZrXM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJpYXQiOjE3MzIxMDgwMDAsImV4cCI6MTczMjE5NDQwMH0.TiRh6jHT50HzwgHGExnjiqqyEQzJciOPkqwJNUbIbzM
 Content-Type: multipart/form-data; boundary=----Boundary
 
 ------Boundary

@@ -27,4 +27,17 @@ const selectUserByUsernameAndPassword = async (username, password) => {
   }
 };
 
-export {selectUserByUsernameAndPassword, selectUserById};
+const addUser = async (user) => {
+  // TODO: check if username or email already exists before adding?
+  try {
+    const sql = 'INSERT INTO Users (username, email, password) VALUES (?, ?, ?)';
+    const params = [user.username, user.email, user.password];
+    const [result] = await promisePool.query(sql, params);
+    return result.insertId;
+  } catch (error) {
+    console.error('addUser', error.message);
+    throw new Error('Database error ' + error.message);
+  }
+};
+
+export {selectUserByUsernameAndPassword, selectUserById, addUser};
