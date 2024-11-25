@@ -1,24 +1,27 @@
 import {validationResult} from "express-validator";
 
+/**
+ * Create errors
+ * @param {string} message Error message
+ * @param {string} status HTTP status code
+ * @returns {object} Error object 
+ */
+const customError = (message, status) => {
+  const error = new Error(message);
+  error.status = status || 500;
+  return error;
+};
+
 const validationErrorHandler = (req, res, next) => {
   // validation errors can be retrieved from the request object (added by express-validator middleware)
   const errors = validationResult(req);
   // check if any validation errors
   if (!errors.isEmpty()) {
-    //return res.status(400).json({errors: errors.array()});
     console.log('validation errors', errors.array());
-    const errorsString = errors.array().map((item) = {
-      // TODO: join 'paths'
-    });
+    const errorsString = errors.array().map((item) => item.path + ' ');
     return next(customError('validation errors in: ' + errorsString, 400));
   }
   next();
-};
-
-const customError = (message, status) => {
-  const error = new Error(message);
-  error.status = status || 500;
-  return error;
 };
 
 /**

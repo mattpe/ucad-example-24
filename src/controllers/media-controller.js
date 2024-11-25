@@ -1,4 +1,4 @@
-import {validationResult} from 'express-validator';
+import {customError} from '../middlewares/error-handlers.js';
 import {
   fetchMediaItems,
   addMediaItem,
@@ -15,7 +15,7 @@ const getItems = async (req, res) => {
   }
 };
 
-const getItemById = async (req, res) => {
+const getItemById = async (req, res, next) => {
   const id = parseInt(req.params.id);
   console.log('getItemById', id);
   try {
@@ -23,11 +23,11 @@ const getItemById = async (req, res) => {
     if (item) {
       res.json(item);
     } else {
-      res.status(404).json({message: 'Item not found'});
+      return next(customError('Item not found', 404));
     }
   } catch (error) {
     console.error('getItemById', error.message);
-    res.status(503).json({error: 503, message: error.message});
+    return next(customError(error.message, 503));
   }
 };
 
@@ -38,14 +38,9 @@ const getItemById = async (req, res) => {
  * @returns {object} response object
  */
 const postItem = async (req, res) => {
-  const errors = validationResult(req);
   console.log('post req file', req.file);
   console.log('post req body', req.body);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({errors: errors.array()});
-  } else if (!req.file) {
-    return res.status(400).json({message: 'File required'});
-  }
+
   // destructure title and description property values from req.body
   const {title, description} = req.body;
   
