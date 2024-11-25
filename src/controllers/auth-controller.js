@@ -14,7 +14,6 @@ const postLogin = async (req, res, next) => {
     res.json({...user, token});
   } else {
     return next(customError(`Username or password invalid.`, 401));
-    //res.sendStatus(401);
   }
 };
 

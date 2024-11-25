@@ -6,12 +6,12 @@ import {
   updateMediaItem,
 } from '../models/media-model.js';
 
-const getItems = async (req, res) => {
+const getItems = async (req, res, next) => {
   try {
     res.json(await fetchMediaItems());
   } catch (e) {
     console.error('getItems', e.message);
-    res.status(503).json({error: 503, message: 'DB error'});
+    return next(customError(e.message, 503));
   }
 };
 
@@ -37,13 +37,13 @@ const getItemById = async (req, res, next) => {
  * @param {object} res HTTP response object
  * @returns {object} response object
  */
-const postItem = async (req, res) => {
+const postItem = async (req, res, next) => {
   console.log('post req file', req.file);
   console.log('post req body', req.body);
 
   // destructure title and description property values from req.body
   const {title, description} = req.body;
-  
+
   const newMediaItem = {
     // user id read from token added by authentication middleware
     user_id: req.user.user_id,
@@ -58,9 +58,7 @@ const postItem = async (req, res) => {
     const id = await addMediaItem(newMediaItem);
     res.status(201).json({message: 'Item added', id: id});
   } catch (error) {
-    return res
-      .status(400)
-      .json({message: 'Something went wrong: ' + error.message});
+    return next(customError(error.message, 503));
   }
 };
 
@@ -70,7 +68,7 @@ const postItem = async (req, res) => {
  * @param {object} res HTTP response object
  * @returns {object} response object
  */
-const putItem = async (req, res) => {
+const putItem = async (req, res, next) => {
   // destructure title and description property values from req.body
   const {title, description} = req.body;
   console.log('put req body', req.body);
@@ -87,14 +85,14 @@ const putItem = async (req, res) => {
     // if no items were edited (id was not found in DB), return 404
     // TODO (optional): return 403 if user does not have permission to edit (user_id does not match the one in db)
     if (itemsEdited === 0) {
-      return res.status(404).json({message: 'Media Item not found or no permission to edit'});
+      return res
+        .status(404)
+        .json({message: 'Media Item not found or no permission to edit'});
     } else if (itemsEdited === 1) {
       return res.status(200).json({message: 'Item updated', id: req.params.id});
     }
   } catch (error) {
-    return res
-      .status(500)
-      .json({message: 'Something went wrong: ' + error.message});
+    return next(customError(error.message, 500));
   }
 };
 

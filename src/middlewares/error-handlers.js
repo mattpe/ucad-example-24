@@ -12,6 +12,13 @@ const customError = (message, status) => {
   return error;
 };
 
+/**
+ * Handler for all validation errors
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
 const validationErrorHandler = (req, res, next) => {
   // validation errors can be retrieved from the request object (added by express-validator middleware)
   const errors = validationResult(req);
@@ -40,6 +47,7 @@ const notFoundHandler = (req, res, next) => {
 /**
 * Custom default middleware for handling errors
 */
+// eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
   res.status(err.status || 500); // default is 500 if err.status is not defined
   res.json({
