@@ -7,9 +7,9 @@ POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-  "username": "ne",
-  "password": "new",
-  "email": "newuser3@example.com"
+  "username": "newuser6",
+  "password": "newpwexample",
+  "email": "newuser6@example.com"
 }
 
 ### Login
@@ -17,8 +17,8 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "newuser3",
-  "password": "new-password"
+  "username": "newuser6",
+  "password": "newpwexample"
 }
 
 ### Get my user info

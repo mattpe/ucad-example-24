@@ -1,19 +1,26 @@
 import jwt from 'jsonwebtoken';
-import {selectUserById, selectUserByUsernameAndPassword} from '../models/user-model.js';
+import bcrypt from 'bcryptjs';
+import {selectUserById, selectUserByUsername} from '../models/user-model.js';
 import 'dotenv/config';
 import {customError} from '../middlewares/error-handlers.js';
 
 const postLogin = async (req, res, next) => {
   console.log('postLogin', req.body);
   const {username, password} = req.body;
-  const user = await selectUserByUsernameAndPassword(username, password);
-  if (user) {
+  const user = await selectUserByUsername(username);
+  if (!user) {
+    return next(customError(`Username not found.`, 401));
+  }
+  const pwMatch = await bcrypt.compare(password, user.password);
+  if (pwMatch) {
     const token = jwt.sign({user_id: user.user_id}, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
-    res.json({...user, token});
+    // DO not include password hash into response
+    delete user.password;
+    return res.json({...user, token});
   } else {
-    return next(customError(`Username or password invalid.`, 401));
+    return next(customError(`Password invalid.`, 401));
   }
 };
 

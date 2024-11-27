@@ -13,16 +13,16 @@ const selectUserById = async (id) => {
   }
 };
 
-const selectUserByUsernameAndPassword = async (username, password) => {
+const selectUserByUsername = async (username) => {
   try {
-    // TODO: return only user_id?
+    // TODO: return only password and user_id?
     const [rows] = await promisePool.query(
-      'SELECT user_id, username, email, user_level_id, created_at FROM Users WHERE username = ? AND password = ?',
-      [username, password],
+      'SELECT user_id, username, password, email, user_level_id, created_at FROM Users WHERE username = ?',
+      [username],
     );
     return rows[0];
   } catch (error) {
-    console.error('selectUserByUsernameAndPassword', error.message);
+    console.error('selectUserByUsername', error.message);
     throw new Error('Database error ' + error.message);
   }
 };
@@ -40,4 +40,4 @@ const addUser = async (user) => {
   }
 };
 
-export {selectUserByUsernameAndPassword, selectUserById, addUser};
+export {selectUserByUsername, selectUserById, addUser};
