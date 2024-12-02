@@ -18,8 +18,11 @@ app.use(express.json());
 app.use(express.static('public'));
 // Uploaded media files
 app.use('/uploads', express.static('uploads'));
+// Documentation website by Apidoc
+app.use('/api', express.static('doc'));
 
 // Api documentation page rendered with pug
+// not used anymore because overridden with docs above
 app.get('/api', (req, res) => {
   res.render('index', {
     title: 'Media sharing REST API Documentation',

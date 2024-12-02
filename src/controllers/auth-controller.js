@@ -4,6 +4,12 @@ import {selectUserById, selectUserByUsername} from '../models/user-model.js';
 import 'dotenv/config';
 import {customError} from '../middlewares/error-handlers.js';
 
+/**
+ * Controller for login requests
+ * @param {object} req Request object
+ * @param {object} res Request object
+ * @param {function} next Express next function
+ */
 const postLogin = async (req, res, next) => {
   console.log('postLogin', req.body);
   const {username, password} = req.body;
