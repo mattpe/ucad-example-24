@@ -21,16 +21,6 @@ app.use('/uploads', express.static('uploads'));
 // Documentation website by Apidoc
 app.use('/api', express.static('doc'));
 
-// Api documentation page rendered with pug
-// not used anymore because overridden with docs above
-app.get('/api', (req, res) => {
-  res.render('index', {
-    title: 'Media sharing REST API Documentation',
-    version: process.env.npm_package_version,
-    // exampleData: mediaItems,
-  });
-});
-
 
 // User authentication endpoints
 app.use('/api/auth', authRouter);

@@ -1,12 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Sharing Application</title>
-</head>
-<body>
-  <h1>Media Sharing Application</h1>
-  <p>Replace this file with the client app.</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple client example for ucad server</title>
+    <script type="module" crossorigin src="/assets/main-B5awjbPj.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-Bkwf22O-.css">
+  </head>
+  <body>
+    <main>
+      <section class="forms column">
+        <h1>Simple client example for ucad server</h1>
+        <h2>Forms</h2>
+        <div id="reg-form-3">
+          <h3>Reg Form</h3>
+          <p>Form handled with JS fetch() - The CORRECT way when using a REST API</p>
+          <form>
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Enter username" />
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Enter email" />
+            <label for="password">Password</label>
+            <input type="text" name="password" placeholder="Enter password" />
+            <button>Submit</button>
+          </form>
+        </div>
+        <hr />
+        <div id="login-form-2">
+          <h3>Login Form</h3>
+          <p>Handled with JS - The CORRECT way when using a REST API</p>
+          <form>
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Enter username" />
+            <label for="password">Password</label>
+            <input type="text" name="password" placeholder="Enter password" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <hr />
+        <div id="upload-form-2">
+          <h3>Upload Form</h3>
+          <p>Form handled with JS - The CORRECT way when using a REST API</p>
+          <form>
+            <label for="title">title</label>
+            <input type="text" name="title" placeholder="Enter title" />
+            <label for="description">description</label>
+            <input type="description" name="description" placeholder="Enter description" />
+            <label for="file">file</label>
+            <input type="file" name="file" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="column">
+        <div class="output">
+          <h3>Output</h3>
+          <code id="output"></code>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
